@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "VPN Keep-Alive and Reconnect",
+  "version": "1.0",
+  "permissions": [
+    "alarms",
+    "background",
+    "storage",
+    "sockets",
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "description": "Keeps VPN alive by pinging the server and reconnecting if it disconnects.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
