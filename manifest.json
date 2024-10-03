@@ -3,10 +3,7 @@
   "name": "VPN Keep-Alive and Reconnect",
   "version": "1.0",
   "permissions": [
-    "alarms",
-    "background",
     "storage",
-    "sockets",
     "activeTab"
   ],
   "background": {
