@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VPN Status</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 10px;
+    }
+    #status {
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <h2>VPN Status</h2>
+  <div id="status">Checking...</div>
+  <button id="reconnect">Reconnect VPN</button>
+
+  <script>
+    document.getElementById('reconnect').addEventListener('click', function() {
+      chrome.runtime.sendMessage({ action: 'reconnectVPN' });
+    });
+
+    // Display VPN status updates from background
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      if (message.action === 'updateStatus') {
+        document.getElementById('status').textContent = message.status;
+      }
+    });
+
+    // Ask background script for current status
+    chrome.runtime.sendMessage({ action: 'getStatus' }, response => {
+      document.getElementById('status').textContent = response.status;
+    });
+  </script>
+</body>
+</html>
