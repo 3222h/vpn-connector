@@ -42,3 +42,14 @@ setInterval(pingVPNServer, pingInterval);
 
 // Initial VPN status monitoring
 pingVPNServer();
+
+// Background communication to handle messages from popup
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'getStatus') {
+    sendResponse({ status: vpnConnected ? 'VPN is connected' : 'VPN is disconnected' });
+  }
+
+  if (message.action === 'reconnectVPN') {
+    reconnectVPN();
+  }
+});
